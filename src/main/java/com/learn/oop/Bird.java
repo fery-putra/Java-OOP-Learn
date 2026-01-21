@@ -1,15 +1,20 @@
 package com.learn.oop;
 
 /**
- * Inheritance: Bird inherits from Animal.
+ * --- CONCEPT: MULTIPLE HIERARCHIES (Inheritance + Interface) ---
+ *
+ * The Bird class 'extends' Animal (Inheritance) AND 'implements' Flyable (Interface).
+ * This means a Bird "IS AN" Animal and it "CAN" Fly.
  */
 public class Bird extends Animal implements Flyable {
+
     public Bird(String name) {
         super(name);
     }
 
     /**
-     * Polymorphism: Specific implementation of makeSound for Bird.
+     * --- CONCEPT: POLYMORPHISM ---
+     * Providing the specific sound for a Bird.
      */
     @Override
     public String makeSound() {
@@ -17,7 +22,10 @@ public class Bird extends Animal implements Flyable {
     }
 
     /**
-     * Interface Implementation: Providing behavior defined in Flyable interface.
+     * --- CONCEPT: INTERFACE IMPLEMENTATION ---
+     *
+     * Because Bird implements Flyable, it MUST provide an implementation 
+     * for the fly() method.
      */
     @Override
     public String fly() {
@@ -25,7 +33,7 @@ public class Bird extends Animal implements Flyable {
     }
 
     /**
-     * Polymorphism (Overriding): Bird might have a different way of eating.
+     * Overriding the eat method from the Animal class.
      */
     @Override
     public void eat() {

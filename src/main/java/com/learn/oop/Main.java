@@ -14,8 +14,20 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * --- CONCEPT: BRINGING IT ALL TOGETHER ---
+ *
+ * This is the main application class. It uses all the OOP concepts
+ * to manage a virtual Zoo.
+ */
 public class Main extends Application {
 
+    /**
+     * --- CONCEPT: POLYMORPHISM (List of Base Type) ---
+     *
+     * We create a List of 'Animal', but it can contain Lions, Elephants, and Birds!
+     * This is possible because all of them "ARE" Animals.
+     */
     private List<Animal> zoo = new ArrayList<>();
     private ListView<Animal> animalListView = new ListView<>();
     private TextArea infoArea = new TextArea();
@@ -26,7 +38,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Java OOP Learning Zoo");
 
-        // Populate Zoo
+        // Populate Zoo with different subclasses of Animal
         zoo.add(new Lion("Simba"));
         zoo.add(new Elephant("Dumbo"));
         zoo.add(new Bird("Zazu"));
@@ -135,6 +147,12 @@ public class Main extends Application {
     private void handleSound() {
         Animal selected = animalListView.getSelectionModel().getSelectedItem();
         if (selected != null) {
+            /**
+             * --- DYNAMIC POLYMORPHISM IN ACTION ---
+             * At compile time, Java only knows 'selected' is an 'Animal'.
+             * At runtime, it checks the ACTUAL type (Lion, Bird, etc.) 
+             * and calls the correct 'makeSound()' method.
+             */
             String sound = selected.makeSound();
             statusLabel.setText(selected.getName() + " says: " + sound);
             infoArea.setText("CONCEPT: Polymorphism\n" +
@@ -185,6 +203,11 @@ public class Main extends Application {
     private void handleFly() {
         Animal selected = animalListView.getSelectionModel().getSelectedItem();
         if (selected != null) {
+            /**
+             * --- CHECKING CAPABILITIES (Interfaces) ---
+             * Not all animals can fly. We check if the selected animal 
+             * 'instanceof Flyable' to see if it has the flying capability.
+             */
             if (selected instanceof Flyable) {
                 String action = ((Flyable) selected).fly();
                 statusLabel.setText(action);
